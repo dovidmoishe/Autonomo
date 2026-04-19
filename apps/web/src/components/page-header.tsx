@@ -14,16 +14,16 @@ export function PageHeader({
   actionSlot,
 }: PageHeaderProps) {
   return (
-    <section className="rounded-2xl border border-[#d7c7a5] bg-[#fff8eb] px-4 py-4 sm:px-5">
+    <section className="rounded-xl border border-zinc-800 bg-zinc-800/30 px-4 py-4 sm:px-5">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#8b6a3b]">
+          <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
             {eyebrow}
           </p>
-          <h2 className="mt-2 text-2xl font-semibold tracking-tight text-[#1e2d34] sm:text-3xl">
+          <h2 className="mt-2 text-2xl font-semibold text-zinc-100 sm:text-3xl">
             {title}
           </h2>
-          <p className="mt-2 max-w-2xl text-sm leading-6 text-[#3e4e58] sm:text-base">
+          <p className="mt-2 max-w-2xl text-sm text-zinc-400 sm:text-base">
             {description}
           </p>
         </div>

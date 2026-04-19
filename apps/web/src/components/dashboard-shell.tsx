@@ -8,56 +8,59 @@ type DashboardShellProps = {
 
 export function DashboardShell({ children }: DashboardShellProps) {
   return (
-    <div className="relative min-h-dvh">
+    <div className="relative min-h-dvh bg-zinc-950">
       <div
         className="pointer-events-none absolute inset-0 -z-10"
         style={{
           background:
-            "radial-gradient(circle at 12% 8%, rgba(13, 148, 136, 0.14), transparent 40%), radial-gradient(circle at 86% 4%, rgba(255, 131, 67, 0.14), transparent 30%)",
+            "radial-gradient(circle at 12% 8%, rgba(13, 148, 136, 0.08), transparent 40%), radial-gradient(circle at 86% 4%, rgba(255, 131, 67, 0.06), transparent 30%)",
         }}
       />
 
-      <div className="mx-auto grid min-h-dvh w-full max-w-[1320px] grid-cols-1 gap-4 px-4 py-4 lg:grid-cols-[270px_1fr] lg:gap-6 lg:px-6 lg:py-6">
-        <aside className="rounded-3xl border border-zinc-800/80 bg-zinc-950 p-5 text-zinc-100 shadow-[0_20px_70px_rgba(0,0,0,0.35)]">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-400">
-            Solana Frontier
-          </p>
-          <h1 className="mt-3 text-2xl font-semibold tracking-tight">Autonomo</h1>
-          <p className="mt-2 text-sm leading-6 text-zinc-400">
-            Command center UI for autonomous strategy planning and execution.
-          </p>
-
-          <div className="mt-6 rounded-2xl border border-teal-700/40 bg-teal-700/10 p-3 text-xs leading-5 text-teal-100">
-            UI-only mode is active. Data and protocol integrations are intentionally
-            not connected yet.
+      <div className="mx-auto grid min-h-dvh w-full max-w-[1320px] grid-cols-1 gap-4 px-4 py-4 lg:grid-cols-[240px_1fr] lg:gap-6 lg:px-6 lg:py-6">
+        <aside className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-5 text-zinc-100">
+          <div className="flex items-center gap-3">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-teal-400 to-teal-600">
+              <svg className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <div>
+              <h1 className="text-lg font-semibold">Autonomo</h1>
+              <p className="text-xs text-zinc-500">Solana Frontier</p>
+            </div>
           </div>
 
-          <div className="mt-6">
+          <p className="mt-4 text-sm text-zinc-400">
+            Autonomous DeFi strategy planning and execution.
+          </p>
+
+          <div className="mt-4 rounded-lg bg-amber-500/10 border border-amber-500/20 px-3 py-2 text-xs text-amber-200">
+            UI-only mode active. Integrations not connected.
+          </div>
+
+          <nav className="mt-6">
             <AppNav />
-          </div>
+          </nav>
 
-          <div className="mt-8 grid gap-3 text-xs">
-            <div className="rounded-xl border border-zinc-800 bg-zinc-900/70 px-3 py-2 text-zinc-300">
+          <div className="mt-8 space-y-2">
+            <div className="rounded-lg bg-zinc-800/50 px-3 py-2 text-xs text-zinc-400">
               Stage: Frontend Structure
             </div>
-            <div className="rounded-xl border border-zinc-800 bg-zinc-900/70 px-3 py-2 text-zinc-300">
-              Focus: Product quality + explainability
+            <div className="rounded-lg bg-zinc-800/50 px-3 py-2 text-xs text-zinc-400">
+              Focus: Product quality
             </div>
           </div>
         </aside>
 
-        <div className="rounded-3xl border border-[#d4c5a6]/60 bg-[#fffbf4]/90 p-4 shadow-[0_18px_55px_rgba(27,38,49,0.12)] backdrop-blur sm:p-5 lg:p-6">
-          <header className="mb-6 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[#dccdad] bg-[#f7f0df] px-4 py-3">
+        <div className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-4 sm:p-5 lg:p-6">
+          <header className="mb-6 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-zinc-800 bg-zinc-800/30 px-4 py-3">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#7d6642]">
-                Autonomous DeFi Operator
-              </p>
-              <p className="mt-1 text-sm text-[#3f4d56]">
-                Build phase: UI architecture and interaction surfaces.
-              </p>
+              <p className="text-sm font-medium text-zinc-200">Autonomous DeFi Operator</p>
+              <p className="mt-0.5 text-xs text-zinc-500">Build phase: UI architecture</p>
             </div>
-            <div className="rounded-xl border border-[#c7b184] bg-[#fff7e8] px-3 py-1 text-xs font-semibold text-[#735321]">
-              No integrations wired
+            <div className="rounded-lg bg-zinc-800 px-3 py-1 text-xs font-medium text-zinc-400">
+              No integrations
             </div>
           </header>
 
