@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Autonomo Dashboard",
+  title: {
+    default: "Autonomo Dashboard",
+    template: "%s | Autonomo",
+  },
   description: "Autonomous DeFi Operator",
 };
 

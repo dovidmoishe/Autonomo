@@ -1,15 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f4ecdc;
+  --foreground: #132029;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans:
-    "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+    "Avenir Next", "Sora", "Nunito Sans", "Segoe UI", "Helvetica Neue", Arial,
     sans-serif;
   --font-mono:
     "JetBrains Mono", "SFMono-Regular", Menlo, Monaco, Consolas,
@@ -18,13 +18,17 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #131720;
+    --foreground: #f3efe6;
   }
 }
 
 body {
+  min-height: 100dvh;
   background: var(--background);
+  background-image:
+    radial-gradient(circle at 8% 12%, rgba(9, 148, 136, 0.12), transparent 34%),
+    radial-gradient(circle at 88% 4%, rgba(255, 130, 68, 0.14), transparent 30%);
   color: var(--foreground);
   font-family: var(--font-sans);
 }
