@@ -8,38 +8,47 @@ type DashboardShellProps = {
 
 export function DashboardShell({ children }: DashboardShellProps) {
   return (
-    <div className="min-h-dvh bg-zinc-950">
-      <header className="sticky top-0 z-50 border-b border-zinc-800 bg-zinc-950/80 backdrop-blur">
-        <div className="flex h-16 items-center justify-between px-4 lg:px-6">
-          <div className="flex items-center gap-4">
-            <div className="flex h-8 w-8 items-center justify-center rounded-md bg-gradient-to-br from-teal-400 to-teal-600">
-              <svg className="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-            </div>
-            <div>
-              <h1 className="text-sm font-semibold text-zinc-100">Autonomo</h1>
-              <p className="text-xs text-zinc-500">Solana Frontier</p>
-            </div>
+    <div className="flex min-h-dvh flex-col bg-zinc-950">
+      <header className="sticky top-0 z-40 flex h-14 shrink-0 items-center justify-between border-b border-zinc-800 bg-zinc-950 px-4">
+        <div className="flex items-center gap-3">
+          <div className="flex h-7 w-7 items-center justify-center rounded-md bg-gradient-to-br from-teal-500 to-teal-600">
+            <svg className="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
           </div>
-
-          <div className="flex items-center gap-3">
-            <span className="rounded-md bg-amber-500/10 border border-amber-500/20 px-2 py-1 text-xs text-amber-400">
-              UI-only
-            </span>
-            <div className="h-8 w-8 rounded-full bg-zinc-800">
-            </div>
-          </div>
+          <span className="text-sm font-semibold text-zinc-100">Autonomo</span>
         </div>
 
-        <div className="border-t border-zinc-800 px-4 lg:px-6">
-          <AppNav />
+        <div className="flex items-center gap-3">
+          <span className="rounded bg-zinc-800 px-2 py-0.5 text-xs text-zinc-400">UI-only</span>
+          <div className="h-7 w-7 rounded-full bg-zinc-700">
+          </div>
         </div>
       </header>
 
-      <div className="mx-auto max-w-[1400px] p-4 lg:p-6">
-        <main className="rounded-xl border border-zinc-800 bg-zinc-900/30 p-4 lg:p-6">
-          {children}
+      <div className="flex flex-1">
+        <aside className="w-56 shrink-0 border-r border-zinc-800 bg-zinc-950">
+          <nav className="p-3">
+            <div className="mb-3 px-2 text-xs font-medium uppercase tracking-wider text-zinc-500">
+              Menu
+            </div>
+            <AppNav />
+          </nav>
+
+          <div className="border-t border-zinc-800 p-3">
+            <div className="mb-3 px-2 text-xs font-medium uppercase tracking-wider text-zinc-500">
+              Status
+            </div>
+            <div className="rounded bg-zinc-900 px-2 py-1.5 text-xs text-zinc-400">
+              No integrations
+            </div>
+          </div>
+        </aside>
+
+        <main className="flex-1 overflow-auto p-4 lg:p-6">
+          <div className="mx-auto max-w-6xl">
+            {children}
+          </div>
         </main>
       </div>
     </div>
