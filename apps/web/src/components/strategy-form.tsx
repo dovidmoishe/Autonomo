@@ -76,10 +76,10 @@ function validate(values: StrategyFormValues): FieldErrors {
 
 function inputClass(hasError: boolean): string {
   if (hasError) {
-    return "mt-1 w-full rounded-xl border border-red-400 bg-red-50 px-3 py-2 text-sm text-red-900 outline-none";
+    return "mt-1 w-full rounded-lg border border-red-500/50 bg-red-500/10 px-3 py-2 text-sm text-red-200 outline-none";
   }
 
-  return "mt-1 w-full rounded-xl border border-[#d9c8a7] bg-[#fffaf0] px-3 py-2 text-sm text-[#24323a] outline-none transition focus:border-teal-500 focus:ring-2 focus:ring-teal-200";
+  return "mt-1 w-full rounded-lg border border-zinc-700 bg-zinc-800/50 px-3 py-2 text-sm text-zinc-200 outline-none transition focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20";
 }
 
 export function StrategyForm() {
@@ -122,19 +122,19 @@ export function StrategyForm() {
   }
 
   return (
-    <section className="rounded-2xl border border-[#deceb0] bg-[#fffdf7] p-4 shadow-[0_8px_24px_rgba(43,58,68,0.08)] sm:p-5">
+    <section className="rounded-xl border border-zinc-800 bg-zinc-800/30 p-4 sm:p-5">
       <header>
-        <h3 className="text-lg font-semibold tracking-tight text-[#1f2d36]">
+        <h3 className="text-lg font-semibold text-zinc-100">
           Strategy Builder
         </h3>
-        <p className="mt-1 text-sm leading-6 text-[#4f5d66]">
+        <p className="mt-1 text-sm text-zinc-500">
           Define one production-ready rule set for auto-optimized yield with risk
           control.
         </p>
       </header>
 
       <form className="mt-4 grid gap-4" onSubmit={handleSubmit} noValidate>
-        <label className="text-sm font-medium text-[#2d3b43]">
+        <label className="text-sm font-medium text-zinc-300">
           Strategy name
           <input
             name="strategyName"
@@ -146,14 +146,14 @@ export function StrategyForm() {
             className={inputClass(Boolean(visibleError("strategyName")))}
           />
           {visibleError("strategyName") ? (
-            <span className="mt-1 block text-xs text-red-700">
+            <span className="mt-1 block text-xs text-red-400">
               {visibleError("strategyName")}
             </span>
           ) : null}
         </label>
 
         <div className="grid gap-4 sm:grid-cols-2">
-          <label className="text-sm font-medium text-[#2d3b43]">
+          <label className="text-sm font-medium text-zinc-300">
             Allocation amount (USDC)
             <input
               name="allocationAmount"
@@ -167,13 +167,13 @@ export function StrategyForm() {
               className={inputClass(Boolean(visibleError("allocationAmount")))}
             />
             {visibleError("allocationAmount") ? (
-              <span className="mt-1 block text-xs text-red-700">
+              <span className="mt-1 block text-xs text-red-400">
                 {visibleError("allocationAmount")}
               </span>
             ) : null}
           </label>
 
-          <label className="text-sm font-medium text-[#2d3b43]">
+          <label className="text-sm font-medium text-zinc-300">
             Risk mode
             <select
               name="riskMode"
@@ -188,7 +188,7 @@ export function StrategyForm() {
               <option value="aggressive">Aggressive</option>
             </select>
             {visibleError("riskMode") ? (
-              <span className="mt-1 block text-xs text-red-700">
+              <span className="mt-1 block text-xs text-red-400">
                 {visibleError("riskMode")}
               </span>
             ) : null}
@@ -196,7 +196,7 @@ export function StrategyForm() {
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2">
-          <label className="text-sm font-medium text-[#2d3b43]">
+          <label className="text-sm font-medium text-zinc-300">
             Trigger type
             <select
               name="triggerType"
@@ -210,13 +210,13 @@ export function StrategyForm() {
               <option value="price_drop">Price drop</option>
             </select>
             {visibleError("triggerType") ? (
-              <span className="mt-1 block text-xs text-red-700">
+              <span className="mt-1 block text-xs text-red-400">
                 {visibleError("triggerType")}
               </span>
             ) : null}
           </label>
 
-          <label className="text-sm font-medium text-[#2d3b43]">
+          <label className="text-sm font-medium text-zinc-300">
             Trigger threshold (%)
             <input
               name="triggerThreshold"
@@ -230,7 +230,7 @@ export function StrategyForm() {
               className={inputClass(Boolean(visibleError("triggerThreshold")))}
             />
             {visibleError("triggerThreshold") ? (
-              <span className="mt-1 block text-xs text-red-700">
+              <span className="mt-1 block text-xs text-red-400">
                 {visibleError("triggerThreshold")}
               </span>
             ) : null}
@@ -238,7 +238,7 @@ export function StrategyForm() {
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2">
-          <label className="text-sm font-medium text-[#2d3b43]">
+          <label className="text-sm font-medium text-zinc-300">
             Rebalance amount (%)
             <input
               name="rebalancePercent"
@@ -253,13 +253,13 @@ export function StrategyForm() {
               className={inputClass(Boolean(visibleError("rebalancePercent")))}
             />
             {visibleError("rebalancePercent") ? (
-              <span className="mt-1 block text-xs text-red-700">
+              <span className="mt-1 block text-xs text-red-400">
                 {visibleError("rebalancePercent")}
               </span>
             ) : null}
           </label>
 
-          <label className="text-sm font-medium text-[#2d3b43]">
+          <label className="text-sm font-medium text-zinc-300">
             Max slippage (%)
             <input
               name="maxSlippage"
@@ -274,20 +274,20 @@ export function StrategyForm() {
               className={inputClass(Boolean(visibleError("maxSlippage")))}
             />
             {visibleError("maxSlippage") ? (
-              <span className="mt-1 block text-xs text-red-700">
+              <span className="mt-1 block text-xs text-red-400">
                 {visibleError("maxSlippage")}
               </span>
             ) : null}
           </label>
         </div>
 
-        <label className="flex items-start gap-3 rounded-xl border border-[#dfcfb1] bg-[#fff7e4] p-3 text-sm text-[#35434c]">
+        <label className="flex items-start gap-3 rounded-lg border border-zinc-700 bg-zinc-800/50 p-3 text-sm text-zinc-300">
           <input
             name="autoExecute"
             type="checkbox"
             checked={values.autoExecute}
             onChange={(event) => updateField("autoExecute", event.target.checked)}
-            className="mt-0.5 h-4 w-4 rounded border-[#b89c6b]"
+            className="mt-0.5 h-4 w-4 rounded border-zinc-600 bg-zinc-800"
           />
           <span>
             Auto-execute once trigger conditions pass validation checks.
@@ -297,13 +297,13 @@ export function StrategyForm() {
         <div className="flex flex-wrap items-center gap-3">
           <button
             type="submit"
-            className="rounded-xl bg-[#145d53] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#0f4e46]"
+            className="rounded-lg bg-teal-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-teal-500"
           >
             Save strategy structure
           </button>
           <button
             type="button"
-            className="rounded-xl border border-[#ccb88f] bg-[#fff6e1] px-4 py-2 text-sm font-semibold text-[#5f4a1f]"
+            className="rounded-lg border border-zinc-700 bg-zinc-800/50 px-4 py-2 text-sm font-medium text-zinc-300 hover:bg-zinc-800"
             onClick={() => {
               setValues(INITIAL_VALUES);
               setTouched({});
@@ -315,7 +315,7 @@ export function StrategyForm() {
         </div>
 
         {submitted && !hasErrors ? (
-          <p className="rounded-xl border border-emerald-300 bg-emerald-50 px-3 py-2 text-sm text-emerald-900">
+          <p className="rounded-lg border border-emerald-500/50 bg-emerald-500/10 px-3 py-2 text-sm text-emerald-400">
             Structure validated. Wire submit handler to backend strategy endpoint
             next.
           </p>

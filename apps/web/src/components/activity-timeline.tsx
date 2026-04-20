@@ -19,14 +19,14 @@ type ActivityTimelineProps = {
 
 function statusClass(status: ActivityStatus): string {
   if (status === "executed") {
-    return "border-emerald-300 bg-emerald-50 text-emerald-900";
+    return "border-emerald-500/50 bg-emerald-500/10 text-emerald-400";
   }
 
   if (status === "failed") {
-    return "border-red-300 bg-red-50 text-red-900";
+    return "border-red-500/50 bg-red-500/10 text-red-400";
   }
 
-  return "border-amber-300 bg-amber-50 text-amber-900";
+  return "border-amber-500/50 bg-amber-500/10 text-amber-400";
 }
 
 export function ActivityTimeline({ events }: ActivityTimelineProps) {
@@ -44,12 +44,12 @@ export function ActivityTimeline({ events }: ActivityTimelineProps) {
       {events.map((event) => (
         <li
           key={event.id}
-          className="rounded-2xl border border-[#deceb0] bg-[#fff8eb] p-4"
+          className="rounded-xl border border-zinc-800 bg-zinc-800/30 p-4"
         >
           <header className="flex flex-wrap items-center justify-between gap-2">
-            <p className="text-sm font-semibold text-[#2a3942]">{event.timestamp}</p>
+            <p className="text-sm font-medium text-zinc-300">{event.timestamp}</p>
             <span
-              className={`rounded-full border px-2 py-0.5 text-xs font-semibold uppercase tracking-[0.08em] ${statusClass(event.status)}`}
+              className={`rounded-full border px-2 py-0.5 text-xs font-medium uppercase tracking-wider ${statusClass(event.status)}`}
             >
               {event.status}
             </span>
@@ -57,25 +57,25 @@ export function ActivityTimeline({ events }: ActivityTimelineProps) {
 
           <dl className="mt-3 grid gap-3 text-sm sm:grid-cols-2">
             <div>
-              <dt className="text-xs uppercase tracking-[0.08em] text-[#8b6a3b]">Trigger</dt>
-              <dd className="mt-1 text-[#33434d]">{event.trigger}</dd>
+              <dt className="text-xs font-medium uppercase tracking-wider text-zinc-500">Trigger</dt>
+              <dd className="mt-1 text-zinc-400">{event.trigger}</dd>
             </div>
             <div>
-              <dt className="text-xs uppercase tracking-[0.08em] text-[#8b6a3b]">Decision</dt>
-              <dd className="mt-1 text-[#33434d]">{event.decision}</dd>
+              <dt className="text-xs font-medium uppercase tracking-wider text-zinc-500">Decision</dt>
+              <dd className="mt-1 text-zinc-400">{event.decision}</dd>
             </div>
             <div>
-              <dt className="text-xs uppercase tracking-[0.08em] text-[#8b6a3b]">Action</dt>
-              <dd className="mt-1 text-[#33434d]">{event.action}</dd>
+              <dt className="text-xs font-medium uppercase tracking-wider text-zinc-500">Action</dt>
+              <dd className="mt-1 text-zinc-400">{event.action}</dd>
             </div>
             <div>
-              <dt className="text-xs uppercase tracking-[0.08em] text-[#8b6a3b]">Result</dt>
-              <dd className="mt-1 text-[#33434d]">{event.result}</dd>
+              <dt className="text-xs font-medium uppercase tracking-wider text-zinc-500">Result</dt>
+              <dd className="mt-1 text-zinc-400">{event.result}</dd>
             </div>
           </dl>
 
-          <div className="mt-3 rounded-xl border border-[#d8c9ad] bg-[#fffdf7] px-3 py-2 text-sm text-[#2f3e47]">
-            <span className="text-xs font-semibold uppercase tracking-[0.08em] text-[#8b6a3b]">
+          <div className="mt-3 rounded-lg border border-zinc-700 bg-zinc-800/50 px-3 py-2 text-sm text-zinc-400">
+            <span className="text-xs font-medium uppercase tracking-wider text-zinc-500">
               Why system acted
             </span>
             <p className="mt-1">{event.rationale}</p>

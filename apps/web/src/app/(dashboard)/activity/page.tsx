@@ -13,14 +13,14 @@ export default function ActivityPage() {
     <div className="space-y-6">
       <PageHeader
         eyebrow="Activity"
-        title="Action timeline and explainability"
+        title="Action Timeline"
         description="Chronological view of Trigger, Decision, Action, and Result with rationale support."
       />
 
       <div className="grid gap-4 xl:grid-cols-[1.3fr_0.85fr]">
         <SectionCard
           title="Automation Timeline"
-          description="This panel tracks all strategy engine outcomes in user-readable format."
+          description="Strategy engine outcomes in user-readable format."
         >
           <ActivityTimeline events={EMPTY_EVENTS} />
         </SectionCard>
@@ -32,14 +32,14 @@ export default function ActivityPage() {
             title="Event States"
             description="Canonical statuses for timeline events and alert grouping."
           >
-            <ul className="grid gap-2 text-sm text-[#34434d]">
-              <li className="rounded-xl border border-amber-300 bg-amber-50 px-3 py-2">
+            <ul className="grid gap-2 text-sm text-zinc-400">
+              <li className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2">
                 Queued: condition met, waiting for execution window.
               </li>
-              <li className="rounded-xl border border-emerald-300 bg-emerald-50 px-3 py-2">
+              <li className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-3 py-2">
                 Executed: action signed and broadcast successfully.
               </li>
-              <li className="rounded-xl border border-red-300 bg-red-50 px-3 py-2">
+              <li className="rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2">
                 Failed: blocked or rejected, requires manual review.
               </li>
             </ul>

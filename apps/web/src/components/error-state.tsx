@@ -5,10 +5,10 @@ type ErrorStateProps = {
 
 export function ErrorState({ title, description }: ErrorStateProps) {
   return (
-    <div className="rounded-2xl border border-red-300 bg-red-50 p-4 text-red-900">
-      <p className="text-sm font-semibold uppercase tracking-[0.1em]">Issue</p>
-      <p className="mt-2 text-lg font-semibold tracking-tight">{title}</p>
-      <p className="mt-1 text-sm leading-6">{description}</p>
+    <div className="rounded-xl border border-red-500/50 bg-red-500/10 p-4 text-red-400">
+      <p className="text-xs font-medium uppercase tracking-wider">Issue</p>
+      <p className="mt-2 text-lg font-semibold text-red-300">{title}</p>
+      <p className="mt-1 text-sm">{description}</p>
     </div>
   );
 }

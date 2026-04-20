@@ -10,26 +10,26 @@ export default function OverviewPage() {
     <div className="space-y-6">
       <PageHeader
         eyebrow="Overview"
-        title="Portfolio command surface"
+        title="Portfolio Dashboard"
         description="Top-level control panel for balance visibility, risk posture, and system readiness."
       />
 
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <MetricCard
           label="Managed capital"
-          hint="Wires to total value managed across active strategies."
+          hint="Total value managed across active strategies."
         />
         <MetricCard
           label="Risk score"
-          hint="Wires to strategy-weighted risk state from backend engine."
+          hint="Strategy-weighted risk state from backend engine."
         />
         <MetricCard
           label="Actions today"
-          hint="Wires to successful and blocked automation actions."
+          hint="Successful and blocked automation actions."
         />
         <MetricCard
           label="Guardrail health"
-          hint="Wires to simulation checks and transaction safety metrics."
+          hint="Simulation checks and transaction safety metrics."
         />
       </section>
 
@@ -38,7 +38,7 @@ export default function OverviewPage() {
 
         <SectionCard
           title="System Signals"
-          description="Reserved for live protocol event summaries and engine heartbeat status."
+          description="Live protocol event summaries and engine heartbeat status."
         >
           <LoadingSkeleton lines={5} />
         </SectionCard>
@@ -46,7 +46,7 @@ export default function OverviewPage() {
 
       <SectionCard
         title="Capital Map"
-        description="Reserved for positions, allocation spread, and protocol-level exposure details."
+        description="Positions, allocation spread, and protocol-level exposure details."
       >
         <EmptyState
           title="No live capital map yet"
