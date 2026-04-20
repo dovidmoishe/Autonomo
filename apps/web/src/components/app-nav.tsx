@@ -17,7 +17,7 @@ export function AppNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="space-y-1" aria-label="Primary navigation">
+    <nav className="flex gap-1" aria-label="Primary navigation">
       {NAV_ITEMS.map((item) => {
         const isActive =
           pathname === item.href || pathname.startsWith(`${item.href}/`);
@@ -27,10 +27,10 @@ export function AppNav() {
             key={item.href}
             href={item.href}
             className={joinClasses(
-              "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+              "flex items-center gap-2 rounded-md px-3 py-2.5 text-sm font-medium transition-colors",
               isActive
-                ? "bg-teal-500/10 text-teal-400"
-                : "text-zinc-400 hover:bg-zinc-800 hover:text-zinc-200",
+                ? "bg-zinc-800 text-zinc-100"
+                : "text-zinc-400 hover:text-zinc-200 hover:bg-zinc-900",
             )}
           >
             {item.label}
