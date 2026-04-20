@@ -2,16 +2,14 @@
   "name": "autonomo-stack",
   "private": true,
   "version": "0.1.0",
-  "workspaces": [
-    "apps/*"
-  ],
+  "packageManager": "pnpm@10.33.0",
   "scripts": {
-    "dev:web": "npm run dev --workspace web",
-    "dev:api": "npm run start:dev --workspace api",
-    "build:web": "npm run build --workspace web",
-    "build:api": "npm run build --workspace api",
-    "lint:web": "npm run lint --workspace web",
-    "lint:api": "npm run lint --workspace api",
-    "test:api": "npm run test --workspace api"
+    "dev:web": "pnpm --filter web dev",
+    "dev:api": "pnpm --filter api start:dev",
+    "build:web": "pnpm --filter web build",
+    "build:api": "pnpm --filter api build",
+    "lint:web": "pnpm --filter web lint",
+    "lint:api": "pnpm --filter api lint",
+    "test:api": "pnpm --filter api test"
   }
 }

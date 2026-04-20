@@ -8,29 +8,29 @@ This repository contains:
 ## Requirements
 
 - Node.js 20+
-- npm 10+
+- pnpm 10+
 
 ## Run Locally
 
-Install dependencies:
+Install dependencies from repo root:
 
 ```bash
-cd /Users/mac/codes/solana-frontier/apps/web && npm install
-cd /Users/mac/codes/solana-frontier/apps/api && npm install
+cd /Users/mac/codes/solana-frontier
+pnpm install
 ```
 
 Start frontend:
 
 ```bash
 cd /Users/mac/codes/solana-frontier
-npm run dev:web
+pnpm run dev:web
 ```
 
 Start backend:
 
 ```bash
 cd /Users/mac/codes/solana-frontier
-npm run dev:api
+pnpm run dev:api
 ```
 
 ## Useful Scripts
@@ -38,9 +38,9 @@ npm run dev:api
 From repo root:
 
 ```bash
-npm run build:web
-npm run build:api
-npm run lint:web
-npm run lint:api
-npm run test:api
+pnpm run build:web
+pnpm run build:api
+pnpm run lint:web
+pnpm run lint:api
+pnpm run test:api
 ```
