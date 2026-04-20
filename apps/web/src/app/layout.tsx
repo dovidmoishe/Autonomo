@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { WalletProviderComponent } from "@/components/wallet-provider";
 
 export const metadata: Metadata = {
-  title: "Autonomo Dashboard",
+  title: {
+    default: "Autonomo Dashboard",
+    template: "%s | Autonomo",
+  },
   description: "Autonomous DeFi Operator",
 };
 
@@ -13,7 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full antialiased">
-      <body className="min-h-full flex flex-col font-sans">{children}</body>
+      <body className="min-h-full flex flex-col font-sans">
+        <WalletProviderComponent>{children}</WalletProviderComponent>
+      </body>
     </html>
   );
 }
