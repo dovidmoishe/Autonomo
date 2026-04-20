@@ -3,6 +3,7 @@
 import type { ReactNode } from "react";
 import { useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
+import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 
 import { AppNav } from "./app-nav";
 
@@ -33,9 +34,8 @@ export function DashboardShell({ children }: DashboardShellProps) {
         </div>
 
         <div className="flex items-center gap-3">
+          <WalletMultiButton className="!h-9 !rounded-lg !border !border-teal-400/45 !bg-teal-500/10 !px-4 !font-sans !text-sm !font-semibold !text-teal-200 !shadow-none !transition hover:!bg-teal-500/20 hover:!text-white" />
           <span className="rounded bg-zinc-800 px-2 py-0.5 text-xs text-zinc-400">UI-only</span>
-          <div className="h-7 w-7 rounded-full bg-zinc-700">
-          </div>
         </div>
       </header>
 
