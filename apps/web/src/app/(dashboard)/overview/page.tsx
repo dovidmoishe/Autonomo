@@ -34,7 +34,7 @@ export default function OverviewPage() {
       </section>
 
       <div className="grid gap-4 xl:grid-cols-[1.2fr_1fr]">
-        <WalletStatus connection="disconnected" />
+        <WalletStatus />
 
         <SectionCard
           title="System Signals"

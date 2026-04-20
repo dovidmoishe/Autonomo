@@ -1,8 +1,9 @@
 @import "tailwindcss";
+@import "@solana/wallet-adapter-react-ui/styles.css";
 
 :root {
-  --background: #f4ecdc;
-  --foreground: #132029;
+  --background: #09090b;
+  --foreground: #fafafa;
 }
 
 @theme inline {
@@ -16,19 +17,9 @@
     "Liberation Mono", "Courier New", monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #131720;
-    --foreground: #f3efe6;
-  }
-}
-
 body {
   min-height: 100dvh;
   background: var(--background);
-  background-image:
-    radial-gradient(circle at 8% 12%, rgba(9, 148, 136, 0.12), transparent 34%),
-    radial-gradient(circle at 88% 4%, rgba(255, 130, 68, 0.14), transparent 30%);
   color: var(--foreground);
   font-family: var(--font-sans);
 }
