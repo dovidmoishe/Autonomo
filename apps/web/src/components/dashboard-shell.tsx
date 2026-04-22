@@ -6,6 +6,7 @@ import { FiMenu, FiX } from "react-icons/fi";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 
 import { AppNav } from "./app-nav";
+import { useWalletConnection } from "@/hooks/use-wallet";
 
 type DashboardShellProps = {
   children: ReactNode;
@@ -13,6 +14,18 @@ type DashboardShellProps = {
 
 export function DashboardShell({ children }: DashboardShellProps) {
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const {
+    connected,
+    connecting,
+    disconnect,
+    publicKey,
+    walletName,
+    networkLabel,
+  } = useWalletConnection();
+
+  const shortAddress = publicKey
+    ? `${publicKey.slice(0, 4)}...${publicKey.slice(-4)}`
+    : null;
 
   return (
     <div className="flex min-h-dvh flex-col bg-zinc-950">
@@ -33,8 +46,42 @@ export function DashboardShell({ children }: DashboardShellProps) {
           <span className="text-sm font-semibold text-zinc-100">Autonomo</span>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
+          <span className="rounded border border-zinc-700 bg-zinc-800 px-2 py-1 text-[11px] font-medium uppercase tracking-wider text-zinc-300">
+            {networkLabel}
+          </span>
+
+          <span
+            className={`rounded border px-2 py-1 text-[11px] font-medium uppercase tracking-wider ${
+              connected
+                ? "border-emerald-500/40 bg-emerald-500/10 text-emerald-300"
+                : "border-amber-500/40 bg-amber-500/10 text-amber-300"
+            }`}
+          >
+            {connected ? "Connected" : connecting ? "Connecting" : "Disconnected"}
+          </span>
+
+          {connected && shortAddress ? (
+            <span className="rounded border border-zinc-700 bg-zinc-800 px-2 py-1 text-[11px] font-medium text-zinc-300">
+              {walletName ? `${walletName} · ` : ""}
+              {shortAddress}
+            </span>
+          ) : null}
+
           <WalletMultiButton className="!h-9 !rounded-lg !border !border-teal-400/45 !bg-teal-500/10 !px-4 !font-sans !text-sm !font-semibold !text-teal-200 !shadow-none !transition hover:!bg-teal-500/20 hover:!text-white" />
+
+          {connected ? (
+            <button
+              type="button"
+              onClick={() => {
+                void disconnect();
+              }}
+              className="h-9 rounded-lg border border-zinc-700 bg-zinc-800 px-3 text-sm font-medium text-zinc-200 transition hover:bg-zinc-700"
+            >
+              Disconnect
+            </button>
+          ) : null}
+
           <span className="rounded bg-zinc-800 px-2 py-0.5 text-xs text-zinc-400">UI-only</span>
         </div>
       </header>

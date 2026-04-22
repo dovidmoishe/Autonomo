@@ -2,11 +2,14 @@
 
 import { useMemo, useState, type ChangeEvent, type FormEvent } from "react";
 
+import { createStrategy } from "@/lib/api";
+import { RiskMode, StrategyRecord, TriggerType } from "@/lib/types";
+
 type StrategyFormValues = {
   strategyName: string;
   allocationAmount: string;
-  riskMode: "" | "defensive" | "balanced" | "aggressive";
-  triggerType: "" | "volatility" | "price_drop";
+  riskMode: "" | RiskMode;
+  triggerType: "" | TriggerType;
   triggerThreshold: string;
   rebalancePercent: string;
   maxSlippage: string;
@@ -14,6 +17,12 @@ type StrategyFormValues = {
 };
 
 type FieldErrors = Partial<Record<keyof StrategyFormValues, string>>;
+
+type StrategyFormProps = {
+  connected: boolean;
+  walletAddress: string | null;
+  onSaved: (strategy: StrategyRecord) => void;
+};
 
 const INITIAL_VALUES: StrategyFormValues = {
   strategyName: "",
@@ -82,10 +91,13 @@ function inputClass(hasError: boolean): string {
   return "mt-1 w-full rounded-lg border border-zinc-700 bg-zinc-800/50 px-3 py-2 text-sm text-zinc-200 outline-none transition focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20";
 }
 
-export function StrategyForm() {
+export function StrategyForm({ connected, walletAddress, onSaved }: StrategyFormProps) {
   const [values, setValues] = useState<StrategyFormValues>(INITIAL_VALUES);
   const [touched, setTouched] = useState<Partial<Record<keyof StrategyFormValues, boolean>>>({});
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [lastSavedStrategyId, setLastSavedStrategyId] = useState<string | null>(null);
 
   const errors = useMemo(() => validate(values), [values]);
   const hasErrors = Object.keys(errors).length > 0;
@@ -112,12 +124,45 @@ export function StrategyForm() {
     return errors[field];
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setSubmitted(true);
+    setSubmitError(null);
+    setLastSavedStrategyId(null);
+
+    if (!connected || !walletAddress) {
+      setSubmitError("Connect your wallet before saving a strategy.");
+      return;
+    }
 
     if (hasErrors) {
       return;
+    }
+
+    setSubmitting(true);
+    try {
+      const response = await createStrategy({
+        walletAddress,
+        strategyName: values.strategyName.trim(),
+        allocationAmountUsd: Number(values.allocationAmount),
+        riskMode: values.riskMode as RiskMode,
+        triggerType: values.triggerType as TriggerType,
+        triggerThresholdPercent: Number(values.triggerThreshold),
+        rebalancePercent: Number(values.rebalancePercent),
+        maxSlippagePercent: Number(values.maxSlippage),
+        autoExecute: values.autoExecute,
+      });
+
+      setLastSavedStrategyId(response.strategy.id);
+      onSaved(response.strategy);
+    } catch (error) {
+      setSubmitError(
+        error instanceof Error
+          ? error.message
+          : "Failed to save strategy. Please try again.",
+      );
+    } finally {
+      setSubmitting(false);
     }
   }
 
@@ -297,9 +342,10 @@ export function StrategyForm() {
         <div className="flex flex-wrap items-center gap-3">
           <button
             type="submit"
-            className="rounded-lg bg-teal-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-teal-500"
+            disabled={submitting}
+            className="rounded-lg bg-teal-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-teal-500 disabled:cursor-not-allowed disabled:opacity-60"
           >
-            Save strategy structure
+            {submitting ? "Saving..." : "Save strategy"}
           </button>
           <button
             type="button"
@@ -308,16 +354,23 @@ export function StrategyForm() {
               setValues(INITIAL_VALUES);
               setTouched({});
               setSubmitted(false);
+              setSubmitError(null);
+              setLastSavedStrategyId(null);
             }}
           >
             Reset form
           </button>
         </div>
 
-        {submitted && !hasErrors ? (
-          <p className="rounded-lg border border-emerald-500/50 bg-emerald-500/10 px-3 py-2 text-sm text-emerald-400">
-            Structure validated. Wire submit handler to backend strategy endpoint
-            next.
+        {submitError ? (
+          <p className="rounded-lg border border-red-500/50 bg-red-500/10 px-3 py-2 text-sm text-red-300">
+            {submitError}
+          </p>
+        ) : null}
+
+        {lastSavedStrategyId ? (
+          <p className="rounded-lg border border-emerald-500/50 bg-emerald-500/10 px-3 py-2 text-sm text-emerald-300">
+            Strategy saved. ID: <span className="font-semibold">{lastSavedStrategyId}</span>
           </p>
         ) : null}
       </form>
