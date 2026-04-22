@@ -1,9 +1,18 @@
+"use client";
+
+import { useState } from "react";
+
 import { PageHeader } from "@/components/page-header";
 import { SectionCard } from "@/components/section-card";
 import { SimulationCard } from "@/components/simulation-card";
 import { StrategyForm } from "@/components/strategy-form";
+import { useWalletConnection } from "@/hooks/use-wallet";
+import { StrategyRecord } from "@/lib/types";
 
 export default function StrategyPage() {
+  const { connected, publicKey } = useWalletConnection();
+  const [activeStrategy, setActiveStrategy] = useState<StrategyRecord | null>(null);
+
   return (
     <div className="space-y-6">
       <PageHeader
@@ -13,10 +22,16 @@ export default function StrategyPage() {
       />
 
       <div className="grid gap-4 xl:grid-cols-[1.25fr_0.95fr]">
-        <StrategyForm />
+        <StrategyForm
+          connected={connected}
+          walletAddress={publicKey}
+          onSaved={(strategy) => {
+            setActiveStrategy(strategy);
+          }}
+        />
 
         <div className="space-y-4">
-          <SimulationCard />
+          <SimulationCard strategy={activeStrategy} />
 
           <SectionCard
             title="Execution Safety Frame"

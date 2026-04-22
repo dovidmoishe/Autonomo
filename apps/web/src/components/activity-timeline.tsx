@@ -1,17 +1,7 @@
 import { EmptyState } from "./empty-state";
+import { ActivityEvent, ActivityStatus } from "@/lib/types";
 
-export type ActivityStatus = "queued" | "executed" | "failed";
-
-export type ActivityEvent = {
-  id: string;
-  timestamp: string;
-  trigger: string;
-  decision: string;
-  action: string;
-  result: string;
-  rationale: string;
-  status: ActivityStatus;
-};
+export type { ActivityEvent };
 
 type ActivityTimelineProps = {
   events: ActivityEvent[];
