@@ -31,7 +31,7 @@ export default function StrategyPage() {
         />
 
         <div className="space-y-4">
-          <SimulationCard strategy={activeStrategy} />
+          <SimulationCard strategy={activeStrategy} connected={connected} />
 
           <SectionCard
             title="Execution Safety Frame"

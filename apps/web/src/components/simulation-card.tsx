@@ -1,25 +1,29 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 
 import { previewSimulation } from "@/lib/api";
 import { SimulationPreview, StrategyRecord } from "@/lib/types";
 
 type SimulationCardProps = {
   strategy: StrategyRecord | null;
+  connected: boolean;
 };
 
-export function SimulationCard({ strategy }: SimulationCardProps) {
+export function SimulationCard({ strategy, connected }: SimulationCardProps) {
   const [marketVolatilityPercent, setMarketVolatilityPercent] = useState("15");
   const [observedPriceMovePercent, setObservedPriceMovePercent] = useState("-4");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [preview, setPreview] = useState<SimulationPreview | null>(null);
 
-  const ready = Boolean(strategy);
+  const ready = Boolean(strategy) && connected;
 
-  const statusText = useMemo(() => {
-    if (!ready) {
+  const statusText = (() => {
+    if (!connected) {
+      return "Connect wallet to continue";
+    }
+    if (!strategy) {
       return "Awaiting saved strategy";
     }
     if (loading) {
@@ -29,10 +33,10 @@ export function SimulationCard({ strategy }: SimulationCardProps) {
       return `Preview ready (${preview.guardrailStatus})`;
     }
     return "Ready for simulation";
-  }, [ready, loading, preview]);
+  })();
 
   async function runPreview() {
-    if (!strategy) {
+    if (!strategy || !connected) {
       return;
     }
 
@@ -122,6 +126,12 @@ export function SimulationCard({ strategy }: SimulationCardProps) {
           {loading ? "Running preview..." : "Run preview"}
         </button>
       </div>
+
+      {!connected ? (
+        <p className="mt-4 rounded-lg border border-amber-500/50 bg-amber-500/10 px-3 py-2 text-sm text-amber-200">
+          Connect your wallet before running a simulation preview.
+        </p>
+      ) : null}
 
       {error ? (
         <p className="mt-4 rounded-lg border border-red-500/50 bg-red-500/10 px-3 py-2 text-sm text-red-300">
